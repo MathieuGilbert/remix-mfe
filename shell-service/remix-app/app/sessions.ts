@@ -1,6 +1,9 @@
 import { createCookieSessionStorage } from "@remix-run/node";
 
-const LOGGED_IN_SESSION_KEY = "logged-in";
+export const SESSION_KEYS = {
+  loggedIn: "auth:logged-in",
+  username: "auth:username",
+};
 
 const { getSession, commitSession, destroySession } =
   createCookieSessionStorage({
@@ -10,9 +13,8 @@ const { getSession, commitSession, destroySession } =
       maxAge: 60 * 60 * 24 * 30, // 30 days
       path: "/",
       sameSite: "lax",
-      // secrets: ["s3cret1"],
+      secrets: ["s3cret1"],
       secure: false,
     },
   });
-
-export { getSession, commitSession, destroySession, LOGGED_IN_SESSION_KEY };
+export { getSession, commitSession, destroySession };

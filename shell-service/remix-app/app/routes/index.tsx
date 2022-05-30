@@ -1,29 +1,10 @@
-import { json, LoaderFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-import { getSession, LOGGED_IN_SESSION_KEY } from "~/sessions";
-
-export const loader: LoaderFunction = async ({ request }) => {
-  const session = await getSession(request.headers.get("Cookie"));
-
-  if (session.get(LOGGED_IN_SESSION_KEY) === true) {
-    return json({ username: "Mathieu" });
-  }
-
-  return null;
-};
+// import { json, LoaderFunction } from "@remix-run/node";
+// import { Outlet, useLoaderData } from "@remix-run/react";
+// import { AuthBar } from "~/auth";
+// import { getSession, SESSION_KEYS } from "~/sessions";
+// import { NavBar } from "~/navigation";
+// import { User } from "~/types";
 
 export default function IndexRoute() {
-  const user = useLoaderData();
-
-  return (
-    <div>
-      Hello {user?.username ?? "Nobody... go log in"}
-      <br />
-      {user == null ? (
-        <Link to="/login">Login</Link>
-      ) : (
-        <Link to="/logout">Logout</Link>
-      )}
-    </div>
-  );
+  return <>hi from index</>;
 }

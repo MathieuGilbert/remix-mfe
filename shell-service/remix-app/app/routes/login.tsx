@@ -6,12 +6,12 @@ import {
 } from "@remix-run/node";
 import { Form, useSearchParams } from "@remix-run/react";
 
-import { getSession, commitSession, LOGGED_IN_SESSION_KEY } from "../sessions";
+import { getSession, commitSession, SESSION_KEYS } from "../sessions";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(request.headers.get("Cookie"));
 
-  if (session.get(LOGGED_IN_SESSION_KEY) === true) {
+  if (session.get(SESSION_KEYS.loggedIn) === true) {
     return redirect("/");
   }
 
@@ -25,7 +25,8 @@ export const loader: LoaderFunction = async ({ request }) => {
 export const action: ActionFunction = async ({ request }) => {
   const session = await getSession(request.headers.get("Cookie"));
 
-  session.set(LOGGED_IN_SESSION_KEY, true);
+  session.set(SESSION_KEYS.loggedIn, true);
+  session.set(SESSION_KEYS.username, "Mathieu"); // still just hardcoded to me
 
   return redirect("/", {
     headers: {
