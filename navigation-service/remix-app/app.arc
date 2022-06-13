@@ -1,5 +1,5 @@
 @app
-shell-service-app
+navigation-service-app
 
 @http
 /*
@@ -11,3 +11,4 @@ shell-service-app
 # @aws
 profile batman
 region us-west-2
+
